@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "predev": "npm run lint",
+    "predev": "npm run format && npm run lint",
     "dev": "vite",
     "preview": "vite preview",
     "build": "vite build",
-    "prelint": "npm run format",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier src --write --ignore-unknown"
