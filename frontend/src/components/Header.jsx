@@ -3,26 +3,26 @@ import useDebounce from '../hooks/useDebounce'
 
 const Header = () => {
   const debounce = useDebounce(1000)
-  const [inputVal,setInputVal]=useState('');
-  const [canClear, setCanClear] = useState(false);
-  const [isLoading, setIsLoading]= useState(false);
+  const [inputVal, setInputVal] = useState('')
+  const [canClear, setCanClear] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSearch = (e) => {
-    const newInputVal=e.target.value;
-    setInputVal(newInputVal);
-    if(newInputVal.trim().length===0) setCanClear(false);
-    else setCanClear(true);
+    const newInputVal = e.target.value
+    setInputVal(newInputVal)
+    if (newInputVal.trim().length === 0) setCanClear(false)
+    else setCanClear(true)
     const task = () => {
-    setIsLoading(true);
-      console.log(newInputVal);
-      setIsLoading(false);
+      setIsLoading(true)
+      console.log(newInputVal)
+      setIsLoading(false)
     }
     debounce(task)
   }
 
-  const clearSearchBar=() => {
-    setInputVal("");
-    setCanClear(false);
+  const clearSearchBar = () => {
+    setInputVal('')
+    setCanClear(false)
   }
 
   return (
@@ -38,7 +38,20 @@ const Header = () => {
             className="w-full focus:outline-none md:text-xl"
             onChange={(e) => handleSearch(e)}
           />
-          {canClear?isLoading?<i className="ri-loader-4-fill animate-spin text-gray-400 text-xl md:text-2xl"/>:<i className="ri-close-circle-fill text-gray-400 text-xl md:text-2xl" onClick={() => {clearSearchBar()}}/>:<div/>}
+          {canClear ? (
+            isLoading ? (
+              <i className="ri-loader-4-fill animate-spin text-gray-400 text-xl md:text-2xl" />
+            ) : (
+              <i
+                className="ri-close-circle-fill text-gray-400 text-xl md:text-2xl"
+                onClick={() => {
+                  clearSearchBar()
+                }}
+              />
+            )
+          ) : (
+            <div />
+          )}
         </div>
       </header>
     </>
