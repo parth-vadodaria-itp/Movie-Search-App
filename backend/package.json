@@ -1,0 +1,26 @@
+{
+  "name": "movie-search-app-backend",
+  "version": "1.0.0",
+  "description": "Movie search app with debounced search and pagination",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "predev": "npm run format && npm run lint",
+    "dev": "node --watch .",
+    "prelint": "npm run format",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write --ignore-unknown",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.3.0",
+    "prettier": "^3.8.1"
+  }
+}
