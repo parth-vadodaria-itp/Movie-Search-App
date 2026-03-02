@@ -10,7 +10,7 @@
     "predev": "npm run format && npm run lint",
     "dev": "node --watch .",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "npm run format && eslint . --fix",
     "format": "prettier . --write --ignore-unknown",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
