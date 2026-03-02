@@ -9,7 +9,6 @@
   "scripts": {
     "predev": "npm run format && npm run lint",
     "dev": "node --watch .",
-    "prelint": "npm run format",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier . --write --ignore-unknown",
