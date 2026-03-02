@@ -1,22 +1,97 @@
 import { useState } from 'react'
 import useDebounce from '../hooks/useDebounce'
 
-const Header = () => {
+const Header = ({ setData }) => {
   const debounce = useDebounce(1000)
   const [inputVal, setInputVal] = useState('')
   const [canClear, setCanClear] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+
+  const task = () => {
+    setIsLoading(true)
+    // API Call
+    setData([
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+      {
+        id: 'tt33014583',
+        title: 'Dhurandhar',
+        imgUrl:
+          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
+        year: 2025,
+        rating: 8.3,
+        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
+      },
+    ])
+    setIsLoading(false)
+  }
 
   const handleSearch = (e) => {
     const newInputVal = e.target.value
     setInputVal(newInputVal)
     if (newInputVal.trim().length === 0) setCanClear(false)
     else setCanClear(true)
-    const task = () => {
-      setIsLoading(true)
-      console.log(newInputVal)
-      setIsLoading(false)
-    }
     debounce(task)
   }
 
@@ -27,7 +102,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="w-full h-[10vh] flex items-center justify-center fixed">
+      <header className="w-full h-[10vh] flex items-center justify-center">
         <div className="w-[70vw] p-2 flex gap-2 rounded-lg ring ring-gray-300 focus-within:ring-2 focus-within:ring-red-500">
           <i className="ri-search-line text-gray-400 text-xl md:text-2xl" />
           <input

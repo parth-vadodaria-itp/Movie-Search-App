@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "build": "vite build",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint:fix": "npm run format && eslint . --fix",
     "format": "prettier src --write --ignore-unknown"
   },
   "dependencies": {
