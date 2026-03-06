@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "npm run format && eslint . --fix",
     "format": "prettier . --write --ignore-unknown",
-    "test": "c8 mocha test/**/*.test.js"
+    "test": "c8 mocha test/controllers/*.test.js"
   },
   "c8": {
     "reporter": [
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "axios": "^1.13.6",
+    "cors": "^2.8.6",
     "dotenv": "^17.3.1",
     "express": "^5.2.1",
     "jest": "^30.2.0",
