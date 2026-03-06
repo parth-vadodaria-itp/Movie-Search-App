@@ -5,21 +5,47 @@
   "license": "ISC",
   "author": "",
   "type": "module",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "predev": "npm run format && npm run lint",
     "dev": "node --watch .",
     "lint": "eslint .",
     "lint:fix": "npm run format && eslint . --fix",
     "format": "prettier . --write --ignore-unknown",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "c8 mocha test/**/*.test.js"
+  },
+  "c8": {
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "all": true,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "test/**",
+      "node_modules/**"
+    ]
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "axios-mock-adapter": "^2.1.0",
+    "c8": "^11.0.0",
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "globals": "^17.3.0",
-    "prettier": "^3.8.1"
+    "mocha": "^11.7.5",
+    "prettier": "^3.8.1",
+    "rewiremock": "^3.14.6",
+    "sinon": "^21.0.2"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jest": "^30.2.0",
+    "p-limit": "^7.3.0"
   }
 }
