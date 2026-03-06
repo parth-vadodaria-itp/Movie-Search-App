@@ -16,7 +16,10 @@ const MovieList = ({ movieList = [] }) => {
             <h3 className="text-gray-500 font-medium pl-2">{movie.year}</h3>
             <div className="p-2 flex flex-wrap gap-1">
               {movie.genres.map((genre) => (
-                <div className="bg-gray-300 rounded-full p-1 text-sm font-normal">
+                <div
+                  key={genre}
+                  className="bg-gray-300 rounded-full p-1 text-sm font-normal"
+                >
                   {genre}
                 </div>
               ))}

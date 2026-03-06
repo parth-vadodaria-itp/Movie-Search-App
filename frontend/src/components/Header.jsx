@@ -1,89 +1,24 @@
 import { useState } from 'react'
 import useDebounce from '../hooks/useDebounce'
+import axios from 'axios'
 
 const Header = ({ setData }) => {
-  const debounce = useDebounce(1000)
+  const debounce = useDebounce(500)
   const [inputVal, setInputVal] = useState('')
   const [canClear, setCanClear] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const task = () => {
+  const task = async (newInputVal) => {
     setIsLoading(true)
     // API Call
-    setData([
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-      {
-        id: 'tt33014583',
-        title: 'Dhurandhar',
-        imgUrl:
-          'https://m.media-amazon.com/images/M/MV5BMzFiNTVkZjYtM2I3Yi00MGNjLWEyYTAtMGViNGExZmMzMGMzXkEyXkFqcGc@._V1_.jpg',
-        year: 2025,
-        rating: 8.3,
-        genres: ['Action', 'Adventure', 'Crime', 'Drama', 'Thriller'],
-      },
-    ])
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8080/search?key=${newInputVal}`,
+      )
+      setData(data)
+    } catch (err) {
+      alert(err.message)
+    }
     setIsLoading(false)
   }
 
@@ -92,7 +27,7 @@ const Header = ({ setData }) => {
     setInputVal(newInputVal)
     if (newInputVal.trim().length === 0) setCanClear(false)
     else setCanClear(true)
-    debounce(task)
+    debounce(() => task(newInputVal))
   }
 
   const clearSearchBar = () => {

@@ -51,13 +51,11 @@ describe("Test the api call to search the movies", () => {
       expectedResData.push(data);
     }
 
-    rewiremock
-      .around(
-        () => import("../../src/controllers/searchController.js"),
-        (rewiremock) => {
-          rewiremock(
-            () => import("../../src/services/movieDataService.js"),
-          ).with({
+    const { search } = await rewiremock.around(
+      () => import("../../src/controllers/searchController.js"),
+      (rewiremock) => {
+        rewiremock(() => import("../../src/services/movieDataService.js")).with(
+          {
             searchMovie: async (key = "mo") => {
               console.log("searchMovie called with key:", key);
               return fakeMovieSearchData;
@@ -66,17 +64,12 @@ describe("Test the api call to search the movies", () => {
               console.log("searchMovieGenre called with id:", id);
               return fakeGenres;
             },
-          });
-        },
-      )
-      .then((searchController) => {
-        console.log("searchController:", Object.keys(searchController));
-        console.log(
-          "mocked:",
-          rewiremock.getMock("../../src/services/movieDataService.js"),
+          },
         );
-        searchController.search(req, res);
-      });
+      },
+    );
+
+    await search(req, res);
 
     sinon.assert.calledWithExactly(res.status, 200);
     sinon.assert.calledWithExactly(res.json, expectedResData);
