@@ -1,3 +1,3 @@
 import rewiremock from "rewiremock/node.js";
-
-export{rewiremock};
+// Essential to ensure ESM/TS support
+export { rewiremock };
